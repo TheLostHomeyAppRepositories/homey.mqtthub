@@ -379,18 +379,28 @@ function getLanguage() {
     //}
 }
 
-function selectProtocol(protocol) {
-    // saveSettings(false);
-
+function onInput() {
     for (let key in defaultSettings) {
         let el = document.getElementById(key);
         if (el) {
             hubSettings[key] = typeof defaultSettings[key] === 'boolean' ? el.checked : el.value;
         }
     }
-
     updateInterface();
 }
+
+// function selectProtocol(protocol) {
+//     // saveSettings(false);
+
+//     for (let key in defaultSettings) {
+//         let el = document.getElementById(key);
+//         if (el) {
+//             hubSettings[key] = typeof defaultSettings[key] === 'boolean' ? el.checked : el.value;
+//         }
+//     }
+
+//     updateInterface();
+// }
 
 function updateInterface() {
     $('#homieSettings').toggle(hubSettings.protocol === 'homie3');

@@ -148,4 +148,8 @@
   },
   "4.3.5": {
     "en": "Fixed unit check error for enum capabilities."
-  }}
+  },
+  "4.3.6": {
+    "en": "Fixed show/hide details in app settings. Added state_class for measure/meter capabilities."
+  }
+}

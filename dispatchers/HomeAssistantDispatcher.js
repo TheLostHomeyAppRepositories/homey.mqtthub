@@ -823,6 +823,18 @@ class HomeAssistantDispatcher {
                     type: 'sensor',
                     payload: {}
                 };
+                switch (capability.type) {
+                    case 'float':
+                    case 'integer':
+                    case 'number':
+                        // Add state class for statistics: https://developers.home-assistant.io/docs/core/entity/sensor/#long-term-statistics
+                        if (capability.id.startsWith('measure')) {
+                            cfg.payload['state_class'] = 'measurement';
+                        }
+                        if (capability.id.startsWith('meter')) {
+                            cfg.payload['state_class'] = 'total_increasing';
+                        }
+                }
                 const unit = capability.units && typeof capability.units === 'object' ? capability.units['en'] : capability.units;
                 if (unit) {
                     cfg.payload.unit_of_measurement = unit;
