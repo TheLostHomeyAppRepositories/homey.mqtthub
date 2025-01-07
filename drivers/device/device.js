@@ -11,7 +11,8 @@ const jsontString = require('json-templater/string');
 const jsontObject = require('json-templater/object');
 
 const HomeyLib = require('homey-lib');
-const CAPABILITIES = HomeyLib.getCapabilities();
+// const CAPABILITIES = HomeyLib.getCapabilities();
+const CAPABILITIES = Object.assign({}, HomeyLib.getCapabilities(), Homey.manifest.capabilities);
 //const DEVICE_CLASSES = HomeyLib.getDeviceClasses();
 
 const  { create, all } = require('mathjs')

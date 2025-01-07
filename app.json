@@ -1,6 +1,6 @@
 {
   "id": "org.mqtt.hub",
-  "version": "4.3.6",
+  "version": "4.3.7",
   "compatibility": ">=12.2.0",
   "sdk": 3,
   "brandColor": "#103b7a",
@@ -123,6 +123,32 @@
       "public": false
     }
   },
+  "capabilities":{
+    "measure_string": {
+      "type": "string",
+      "title": {
+        "en": "Text",
+        "de": "Text",
+        "nl": "Tekst"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "icon": "/assets/capability_icons/measure_string.svg"
+    },
+    "measure_number": {
+      "type": "number",
+      "title": {
+        "en": "Number",
+        "de": "Zahl",
+        "nl": "Getal"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "icon": "/assets/capability_icons/measure_number.svg"
+    }
+  },
   "drivers": [
     {
       "id": "device",
@@ -132,7 +158,9 @@
       },
       "class": "other",
       "capabilities": [
-        "onoff"
+        "onoff",
+        "measure_number",
+        "measure_string"
       ],
       "images": {
         "large": "/drivers/device/assets/images/large.png",
@@ -1069,6 +1097,58 @@
               "nl": "Aantal maximale waarschuwingen totdat de app wordt uitgeschakeld"
             }
           }
+        ]
+      },
+      {
+        "id": "measure_string_changed",
+        "title": {
+            "en": "Text changed",
+            "nl": "Tekst gewijzigd"
+        },
+        "hint": {
+            "en": "Triggers when the text capability changes.",
+            "nl": "Wordt geactiveerd wanneer de tekstwaarde capability verandert."
+        },
+        "tokens": [{
+                "name": "measure_string",
+                "type": "string",
+                "title": {
+                    "en": "Text",
+                    "nl": "Tekst"
+                }
+            }
+        ],
+        "args": [{
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=device&capabilities=measure_string"
+            }
+        ]
+      },
+      {
+        "id": "measure_number_changed",
+        "title": {
+            "en": "Number changed",
+            "nl": "Getal gewijzigd"
+        },
+        "hint": {
+            "en": "Triggers when the number capability changes.",
+            "nl": "Wordt geactiveerd wanneer de nummerwaarde capability verandert."
+        },
+        "tokens": [{
+                "name": "measure_number",
+                "type": "number",
+                "title": {
+                    "en": "Number",
+                    "nl": "Getal"
+                }
+            }
+        ],
+        "args": [{
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=device&capabilities=measure_number"
+            }
         ]
       }
     ],

@@ -3,7 +3,8 @@
 const Homey = require('homey');
 const MQTTClient = require('../../mqtt/MQTTClient');
 const HomeyLib = require('homey-lib');
-const CAPABILITIES = HomeyLib.getCapabilities();
+// const CAPABILITIES = HomeyLib.getCapabilities();
+const CAPABILITIES = Object.assign({}, HomeyLib.getCapabilities(), Homey.manifest.capabilities);
 const DEVICE_CLASSES = HomeyLib.getDeviceClasses();
 const { formatValue, parseValue } = require('../../ValueParser');
 
@@ -125,7 +126,7 @@ class MQTTDriver extends Homey.Driver {
             }
             return capabilities;
         });
-
+        
         session.setHandler('capability', async (data) => {
             if(!edit) return;
             return pairingDevice.settings.capabilities[edit];

@@ -151,5 +151,8 @@
   },
   "4.3.6": {
     "en": "Fixed show/hide details in app settings. Added state_class for measure/meter capabilities."
+  },
+  "4.3.7": {
+    "en": "Added generic Number and Text capabilities."
   }
 }

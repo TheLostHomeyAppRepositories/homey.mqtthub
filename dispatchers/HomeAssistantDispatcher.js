@@ -803,7 +803,7 @@ class HomeAssistantDispatcher {
         //}
 
         // based on capability data type
-        let cfg;
+        let cfg = undefined;
         switch (capability.type) {
             case 'boolean':
                 cfg = {
@@ -813,10 +813,7 @@ class HomeAssistantDispatcher {
                         payload_off: "false"
                     }
                 };
-                return cfg;
             case 'number':
-            case 'float':
-            case 'integer':
             case 'string':
             case 'enum':
                 cfg = {
@@ -824,8 +821,6 @@ class HomeAssistantDispatcher {
                     payload: {}
                 };
                 switch (capability.type) {
-                    case 'float':
-                    case 'integer':
                     case 'number':
                         // Add state class for statistics: https://developers.home-assistant.io/docs/core/entity/sensor/#long-term-statistics
                         if (capability.id.startsWith('measure')) {
@@ -839,10 +834,17 @@ class HomeAssistantDispatcher {
                 if (unit) {
                     cfg.payload.unit_of_measurement = unit;
                 }
-                return cfg;
-            default:
-                return undefined;
         }
+        if (cfg == undefined){
+            return cfg;
+        }
+        // based on capability id
+        // const configuration = configurations[capability.id.split('.')[0]];
+        // if (configuration && typeof configuration === 'object') {
+        //     cfg['payload'] = { ...cfg['payload'], ...configuration['payload'] };            
+        // }
+
+        return cfg;
     }
 
     _registerConfig(device, type, topic, config) {
