@@ -9,61 +9,82 @@ const TopicsRegistry = require('../mqtt/TopicsRegistry');
 const configurations = {
 
     // Binary sensor
-    alarm_motion: {
-        payload: {
-            device_class: 'motion'
-        }
-    },
-    alarm_contact: {
-        payload: {
-            device_class: 'door'
-        }
-    },
-    alarm_co: {
-        payload: {
-            device_class: 'gas'
-        }
-    },
-    alarm_co2: {
-        payload: {
-            device_class: 'gas'
-        }
-    },
-    alarm_pm25: {
-        payload: {
-            device_class: 'smoke'
-        }
-    },
-    alarm_tamper: {
-        payload: {
-            device_class: 'motion'
-        }
-    },
-    alarm_smoke: {
-        payload: {
-            device_class: 'smoke'
-        }
-    },
-    alarm_fire: {
-        payload: {
-            device_class: 'fire'
-        }
-    },
-    alarm_heat: {
-        payload: {
-            device_class: 'heat'
-        }
-    },
-    alarm_water: {
-        payload: {
-            device_class: 'moisture'
-        }
-    },
     alarm_battery: {
         payload: {
             device_class: 'battery'
         }
     },
+    alarm_co: {
+        payload: {
+            device_class: 'co'
+        }
+    },
+    alarm_cold: {
+        payload: {
+            device_class: 'cold'
+        }
+    },
+    alarm_connectivity: {
+        payload: {
+            device_class: 'connectivity'
+        }
+    },
+
+    // alarm_motion: {
+    //     payload: {
+    //         device_class: 'motion'
+    //     }
+    // },
+    // alarm_contact: {
+    //     payload: {
+    //         device_class: 'door'
+    //     }
+    // },
+    // alarm_co: {
+    //     payload: {
+    //         device_class: 'gas'
+    //     }
+    // },
+    // alarm_co2: {
+    //     payload: {
+    //         device_class: 'gas'
+    //     }
+    // },
+    // alarm_pm25: {
+    //     payload: {
+    //         device_class: 'smoke'
+    //     }
+    // },
+    // alarm_tamper: {
+    //     payload: {
+    //         device_class: 'motion'
+    //     }
+    // },
+    // alarm_smoke: {
+    //     payload: {
+    //         device_class: 'smoke'
+    //     }
+    // },
+    // alarm_fire: {
+    //     payload: {
+    //         device_class: 'fire'
+    //     }
+    // },
+    // alarm_heat: {
+    //     payload: {
+    //         device_class: 'heat'
+    //     }
+    // },
+    // alarm_water: {
+    //     payload: {
+    //         device_class: 'moisture'
+    //     }
+    // },
+    // alarm_battery: {
+    //     payload: {
+    //         device_class: 'battery'
+    //     }
+    // },
     //'alarm_night': {
     //    payload: {
     //        device_class: 'night' // invalid class??
@@ -813,6 +834,7 @@ class HomeAssistantDispatcher {
                         payload_off: "false"
                     }
                 };
+                break;
             case 'number':
             case 'string':
             case 'enum':
@@ -834,7 +856,9 @@ class HomeAssistantDispatcher {
                 if (unit) {
                     cfg.payload.unit_of_measurement = unit;
                 }
+                break;
         }
+
         if (cfg == undefined){
             return cfg;
         }

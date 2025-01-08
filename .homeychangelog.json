@@ -154,5 +154,11 @@
   },
   "4.3.7": {
     "en": "Added generic Number and Text capabilities."
+  },
+  "4.3.8": {
+    "en": "Added capability specific device_class for HA auto discovery."
+  },
+  "4.3.9": {
+    "en": "Fixed entity domain determination for HA auto discovery."
   }
 }
