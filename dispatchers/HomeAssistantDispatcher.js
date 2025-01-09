@@ -6,244 +6,244 @@ const normalize = require('../normalize');
 const TopicsRegistry = require('../mqtt/TopicsRegistry');
 
 // Capability overrides
-const configurations = {
+const CAPABILITY_CONFIG = require('./capability_config');
+ 
 
-    // Binary sensor
-    alarm_battery: {
-        payload: {
-            device_class: 'battery'
-        }
-    },
-    alarm_co: {
-        payload: {
-            device_class: 'co'
-        }
-    },
-    alarm_cold: {
-        payload: {
-            device_class: 'cold'
-        }
-    },
-    alarm_connectivity: {
-        payload: {
-            device_class: 'connectivity'
-        }
-    },
+//     alarm_battery: {
+//         payload: {
+//             device_class: 'battery'
+//         }
+//     },
+//     alarm_co: {
+//         payload: {
+//             device_class: 'co'
+//         }
+//     },
+//     alarm_cold: {
+//         payload: {
+//             device_class: 'cold'
+//         }
+//     },
+//     alarm_connectivity: {
+//         payload: {
+//             device_class: 'connectivity'
+//         }
+//     },
 
-    // alarm_motion: {
-    //     payload: {
-    //         device_class: 'motion'
-    //     }
-    // },
-    // alarm_contact: {
-    //     payload: {
-    //         device_class: 'door'
-    //     }
-    // },
-    // alarm_co: {
-    //     payload: {
-    //         device_class: 'gas'
-    //     }
-    // },
-    // alarm_co2: {
-    //     payload: {
-    //         device_class: 'gas'
-    //     }
-    // },
-    // alarm_pm25: {
-    //     payload: {
-    //         device_class: 'smoke'
-    //     }
-    // },
-    // alarm_tamper: {
-    //     payload: {
-    //         device_class: 'motion'
-    //     }
-    // },
-    // alarm_smoke: {
-    //     payload: {
-    //         device_class: 'smoke'
-    //     }
-    // },
-    // alarm_fire: {
-    //     payload: {
-    //         device_class: 'fire'
-    //     }
-    // },
-    // alarm_heat: {
-    //     payload: {
-    //         device_class: 'heat'
-    //     }
-    // },
-    // alarm_water: {
-    //     payload: {
-    //         device_class: 'moisture'
-    //     }
-    // },
-    // alarm_battery: {
-    //     payload: {
-    //         device_class: 'battery'
-    //     }
-    // },
-    //'alarm_night': {
-    //    payload: {
-    //        device_class: 'night' // invalid class??
-    //    }
-    //},
+//     // alarm_motion: {
+//     //     payload: {
+//     //         device_class: 'motion'
+//     //     }
+//     // },
+//     // alarm_contact: {
+//     //     payload: {
+//     //         device_class: 'door'
+//     //     }
+//     // },
+//     // alarm_co: {
+//     //     payload: {
+//     //         device_class: 'gas'
+//     //     }
+//     // },
+//     // alarm_co2: {
+//     //     payload: {
+//     //         device_class: 'gas'
+//     //     }
+//     // },
+//     // alarm_pm25: {
+//     //     payload: {
+//     //         device_class: 'smoke'
+//     //     }
+//     // },
+//     // alarm_tamper: {
+//     //     payload: {
+//     //         device_class: 'motion'
+//     //     }
+//     // },
+//     // alarm_smoke: {
+//     //     payload: {
+//     //         device_class: 'smoke'
+//     //     }
+//     // },
+//     // alarm_fire: {
+//     //     payload: {
+//     //         device_class: 'fire'
+//     //     }
+//     // },
+//     // alarm_heat: {
+//     //     payload: {
+//     //         device_class: 'heat'
+//     //     }
+//     // },
+//     // alarm_water: {
+//     //     payload: {
+//     //         device_class: 'moisture'
+//     //     }
+//     // },
+//     // alarm_battery: {
+//     //     payload: {
+//     //         device_class: 'battery'
+//     //     }
+//     // },
+//     //'alarm_night': {
+//     //    payload: {
+//     //        device_class: 'night' // invalid class??
+//     //    }
+//     //},
 
-    //////////////// TODO: Implement the rest of the pre-defined capabilities /////////////
+//     //////////////// TODO: Implement the rest of the pre-defined capabilities /////////////
 
-    //// Sensor
-    target_temperature: {
-        payload: {
-            device_class: 'temperature'
-        }
-    },
-    measure_temperature: {
-        payload: {
-            device_class: 'temperature'
-        }
-    },
-    //measure_co: {
-    //    payload: {
-    //        device_class: 'gas' // invalid
-    //    },
-    //},
-    //measure_co2: {
-    //    payload: {
-    //        device_class: 'gas' // invalid
-    //    },
-    //},
-    //measure_pm25: {
-    //    payload: {
-    //        device_class: 'gas' // invalid
-    //    }
-    //},
-    measure_humidity: {
-        payload: {
-            device_class: 'humidity'
-        }
-    },
-    measure_pressure: {
-        payload: {
-            device_class: 'pressure'
-        }
-    },
-    //measure_noise: {
-    //    payload: {
-    //        device_class: 'noise' // invalid
-    //    }
-    //},
-    //measure_rain: {
-    //    payload: {
-    //        device_class: 'rain' // invalid
-    //    }
-    //},
-    //measure_wind_strength: {
-    //    payload: {
-    //        device_class: 'wind' // invalid
-    //    }
-    //},
-    //measure_wind_angle: {
-    //    payload: {
-    //        device_class: 'wind' // invalid
-    //    }
-    //},
-    //measure_gust_strength: {
-    //    payload: {
-    //        device_class: 'gust' // invalid
-    //    }
-    //},
-    //measure_gust_angle: {
-    //    payload: {
-    //        device_class: 'gust' // invalid
-    //    }
-    //},
-    measure_battery: {
-        payload: {
-            device_class: 'battery'
-        }
-    },
-    measure_power: {
-        payload: {
-        }
-    },
-    measure_voltage: {
-        payload: {
-        }
-    },
-    measure_current: {
-        payload: {
-        }
-    },
-    measure_luminance: {
-        payload: {
-            device_class: 'luminance'
-        }
-    },
-    //measure_ultraviolet: {
-    //    payload: {
-    //        device_class: 'ultraviolet' // invlaid
-    //    }
-    //},
-    measure_water: {
-        payload: {
-            device_class: 'humidity'
-        }
-    },
+//     //// Sensor
+//     target_temperature: {
+//         payload: {
+//             device_class: 'temperature'
+//         }
+//     },
+//     measure_temperature: {
+//         payload: {
+//             device_class: 'temperature'
+//         }
+//     },
+//     //measure_co: {
+//     //    payload: {
+//     //        device_class: 'gas' // invalid
+//     //    },
+//     //},
+//     //measure_co2: {
+//     //    payload: {
+//     //        device_class: 'gas' // invalid
+//     //    },
+//     //},
+//     //measure_pm25: {
+//     //    payload: {
+//     //        device_class: 'gas' // invalid
+//     //    }
+//     //},
+//     measure_humidity: {
+//         payload: {
+//             device_class: 'humidity'
+//         }
+//     },
+//     measure_pressure: {
+//         payload: {
+//             device_class: 'pressure'
+//         }
+//     },
+//     //measure_noise: {
+//     //    payload: {
+//     //        device_class: 'noise' // invalid
+//     //    }
+//     //},
+//     //measure_rain: {
+//     //    payload: {
+//     //        device_class: 'rain' // invalid
+//     //    }
+//     //},
+//     //measure_wind_strength: {
+//     //    payload: {
+//     //        device_class: 'wind' // invalid
+//     //    }
+//     //},
+//     //measure_wind_angle: {
+//     //    payload: {
+//     //        device_class: 'wind' // invalid
+//     //    }
+//     //},
+//     //measure_gust_strength: {
+//     //    payload: {
+//     //        device_class: 'gust' // invalid
+//     //    }
+//     //},
+//     //measure_gust_angle: {
+//     //    payload: {
+//     //        device_class: 'gust' // invalid
+//     //    }
+//     //},
+//     measure_battery: {
+//         payload: {
+//             device_class: 'battery'
+//         }
+//     },
+//     measure_power: {
+//         payload: {
+//         }
+//     },
+//     measure_voltage: {
+//         payload: {
+//         }
+//     },
+//     measure_current: {
+//         payload: {
+//         }
+//     },
+//     measure_luminance: {
+//         payload: {
+//             device_class: 'luminance'
+//         }
+//     },
+//     //measure_ultraviolet: {
+//     //    payload: {
+//     //        device_class: 'ultraviolet' // invlaid
+//     //    }
+//     //},
+//     measure_water: {
+//         payload: {
+//             device_class: 'humidity'
+//         }
+//     },
 
-    //// Cover
-    // TODO: Implement window cover: https://www.home-assistant.io/components/cover.mqtt/
+//     //// Cover
+//     // TODO: Implement window cover: https://www.home-assistant.io/components/cover.mqtt/
 
-    //'sensor_cover': {
-    //    type: 'sensor',
-    //    payload: {
-    //    },
-    //},
+//     //'sensor_cover': {
+//     //    type: 'sensor',
+//     //    payload: {
+//     //    },
+//     //},
 
-    //'windowcoverings_state': {
-    //    type: 'cover',
-    //    payload: {
-    //        optimistic: true,
-    //    },
-    //},
-    //'windowcoverings_tilt_up': {
-    //    type: 'cover',
-    //    payload: {
-    //        optimistic: true,
-    //    },
-    //},
-    //'windowcoverings_tilt_down': {
-    //    type: 'cover',
-    //    payload: {
-    //        optimistic: true,
-    //    },
-    //},
-    //'windowcoverings_tilt_set': {
-    //    type: 'cover',
-    //    payload: {
-    //        optimistic: true,
-    //    },
-    //},
-    //'windowcoverings_closed': {
-    //    type: 'cover',
-    //    payload: {
-    //        optimistic: true,
-    //    },
-    //},
-    //'windowcoverings_set': {
-    //    type: 'cover',
-    //    payload: {
-    //        optimistic: true,
-    //    },
-    //},
+//     //'windowcoverings_state': {
+//     //    type: 'cover',
+//     //    payload: {
+//     //        optimistic: true,
+//     //    },
+//     //},
+//     //'windowcoverings_tilt_up': {
+//     //    type: 'cover',
+//     //    payload: {
+//     //        optimistic: true,
+//     //    },
+//     //},
+//     //'windowcoverings_tilt_down': {
+//     //    type: 'cover',
+//     //    payload: {
+//     //        optimistic: true,
+//     //    },
+//     //},
+//     //'windowcoverings_tilt_set': {
+//     //    type: 'cover',
+//     //    payload: {
+//     //        optimistic: true,
+//     //    },
+//     //},
+//     //'windowcoverings_closed': {
+//     //    type: 'cover',
+//     //    payload: {
+//     //        optimistic: true,
+//     //    },
+//     //},
+//     //'windowcoverings_set': {
+//     //    type: 'cover',
+//     //    payload: {
+//     //        optimistic: true,
+//     //    },
+//     //},
 
-    //// Vacuum
-    // TODO: implement vacuum: https://www.home-assistant.io/components/vacuum.mqtt/
-    //'vacuumcleaner_state': {
-    //    type: 'vacuum',
-    //}
-};
+//     //// Vacuum
+//     // TODO: implement vacuum: https://www.home-assistant.io/components/vacuum.mqtt/
+//     //'vacuumcleaner_state': {
+//     //    type: 'vacuum',
+//     //}
+// };
 
 const sensorClasses = new Set([
     'battery',
@@ -863,10 +863,10 @@ class HomeAssistantDispatcher {
             return cfg;
         }
         // based on capability id
-        // const configuration = configurations[capability.id.split('.')[0]];
-        // if (configuration && typeof configuration === 'object') {
-        //     cfg['payload'] = { ...cfg['payload'], ...configuration['payload'] };            
-        // }
+        const configuration = CAPABILITY_CONFIG[capability.id.split('.')[0]];
+        if (configuration && typeof configuration === 'object') {
+            cfg['payload'] = { ...cfg['payload'], ...configuration['payload'] };            
+        }
 
         return cfg;
     }

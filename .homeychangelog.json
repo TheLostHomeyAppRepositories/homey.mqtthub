@@ -160,5 +160,8 @@
   },
   "4.3.9": {
     "en": "Fixed entity domain determination for HA auto discovery."
+  },
+  "4.3.10": {
+    "en": "Added capability specific device_class for HA auto discovery."
   }
 }
