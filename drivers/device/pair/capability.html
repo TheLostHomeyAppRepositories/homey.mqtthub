@@ -89,7 +89,8 @@
                 this.capabilities = result;
                 const lang = 'en';
                 this.sorted = Object.keys(result)
-                    .sort((a, b) => sortByTitle(result[a], result[b], lang))
+                    // .sort((a, b) => sortByTitle(result[a], result[b], lang))
+                    .sort((a, b) => sortById(result[a], result[b], lang))
                     .map(key => { 
                         const capability = result[key];
                         return { 
@@ -126,7 +127,7 @@
         <div class="settings-itemgroup">
             <select class="homey-form-select" v-model="capability" v-if="capabilities">
                 <option :value="item.id" v-for="item of sorted">
-                    {{item.title}} ({{item.unit}})
+                    {{item.id}} - {{item.title}} ({{item.unit}})
                 </option>
             </select>
         </div>

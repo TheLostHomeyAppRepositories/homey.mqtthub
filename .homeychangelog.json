@@ -163,5 +163,8 @@
   },
   "4.3.10": {
     "en": "Added capability specific device_class for HA auto discovery."
+  },
+  "4.3.11": {
+    "en": "Changed capability selection in pair view. Added capability id."
   }
 }
