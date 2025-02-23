@@ -166,5 +166,8 @@
   },
   "4.3.11": {
     "en": "Changed capability selection in pair view. Added capability id."
+  },
+  "4.3.12": {
+    "en": "Updates Node module athom-api."
   }
 }
