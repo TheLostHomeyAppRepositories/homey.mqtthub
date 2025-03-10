@@ -169,5 +169,8 @@
   },
   "4.3.12": {
     "en": "Updates Node module athom-api."
+  },
+  "4.3.13": {
+    "en": "Fixed device class for meter_power for HA discovery."
   }
 }

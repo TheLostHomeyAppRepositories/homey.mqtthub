@@ -530,7 +530,7 @@ module.exports =
     },
     meter_power: {
         payload: {
-            device_class: 'power'
+            device_class: 'energy'
         }
     },
     // meter_rain
