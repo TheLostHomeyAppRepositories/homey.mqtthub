@@ -7,7 +7,7 @@
             "restart": true,
             "name": "Attach MQTT-Hub Homey Pro 23",
             "address": "192.168.1.15",
-            "port": 9229,
+            "port": 9906,
             "localRoot": "${workspaceFolder}",
             "remoteRoot": "/app/"
         },
@@ -15,19 +15,29 @@
             "type": "node",
             "request": "attach",
             "restart": true,
-            "name": "Attach MQTT-Hub Homey Pro 23 DEV",
+            "name": "Attach MQTT-Hub Homey Pro 23 DEV LAN",
             "address": "192.168.1.16",
-            "port": 9229,
+            "port": 9906,
             "localRoot": "${workspaceFolder}",
             "remoteRoot": "/app/"
         },
         {
+          "type": "node",
+          "request": "attach",
+          "restart": true,
+          "name": "Attach MQTT-Hub Homey Pro 23 DEV Wifi",
+          "address": "192.168.1.17",
+          "port": 9906,
+          "localRoot": "${workspaceFolder}",
+          "remoteRoot": "/app/"
+      },
+      {
             "type": "node",
             "request": "attach",
             "restart": true,
             "name": "Attach MQTT-Hub to Homey Pro 19 DEV",
             "address": "192.168.1.13",
-            "port": 9229,
+            "port": 9906,
             "localRoot": "${workspaceFolder}",
             "remoteRoot": "/"
         }

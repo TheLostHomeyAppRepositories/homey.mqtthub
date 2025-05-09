@@ -8,243 +8,6 @@ const TopicsRegistry = require('../mqtt/TopicsRegistry');
 // Capability overrides
 const CAPABILITY_CONFIG = require('./capability_config');
  
-
-//     alarm_battery: {
-//         payload: {
-//             device_class: 'battery'
-//         }
-//     },
-//     alarm_co: {
-//         payload: {
-//             device_class: 'co'
-//         }
-//     },
-//     alarm_cold: {
-//         payload: {
-//             device_class: 'cold'
-//         }
-//     },
-//     alarm_connectivity: {
-//         payload: {
-//             device_class: 'connectivity'
-//         }
-//     },
-
-//     // alarm_motion: {
-//     //     payload: {
-//     //         device_class: 'motion'
-//     //     }
-//     // },
-//     // alarm_contact: {
-//     //     payload: {
-//     //         device_class: 'door'
-//     //     }
-//     // },
-//     // alarm_co: {
-//     //     payload: {
-//     //         device_class: 'gas'
-//     //     }
-//     // },
-//     // alarm_co2: {
-//     //     payload: {
-//     //         device_class: 'gas'
-//     //     }
-//     // },
-//     // alarm_pm25: {
-//     //     payload: {
-//     //         device_class: 'smoke'
-//     //     }
-//     // },
-//     // alarm_tamper: {
-//     //     payload: {
-//     //         device_class: 'motion'
-//     //     }
-//     // },
-//     // alarm_smoke: {
-//     //     payload: {
-//     //         device_class: 'smoke'
-//     //     }
-//     // },
-//     // alarm_fire: {
-//     //     payload: {
-//     //         device_class: 'fire'
-//     //     }
-//     // },
-//     // alarm_heat: {
-//     //     payload: {
-//     //         device_class: 'heat'
-//     //     }
-//     // },
-//     // alarm_water: {
-//     //     payload: {
-//     //         device_class: 'moisture'
-//     //     }
-//     // },
-//     // alarm_battery: {
-//     //     payload: {
-//     //         device_class: 'battery'
-//     //     }
-//     // },
-//     //'alarm_night': {
-//     //    payload: {
-//     //        device_class: 'night' // invalid class??
-//     //    }
-//     //},
-
-//     //////////////// TODO: Implement the rest of the pre-defined capabilities /////////////
-
-//     //// Sensor
-//     target_temperature: {
-//         payload: {
-//             device_class: 'temperature'
-//         }
-//     },
-//     measure_temperature: {
-//         payload: {
-//             device_class: 'temperature'
-//         }
-//     },
-//     //measure_co: {
-//     //    payload: {
-//     //        device_class: 'gas' // invalid
-//     //    },
-//     //},
-//     //measure_co2: {
-//     //    payload: {
-//     //        device_class: 'gas' // invalid
-//     //    },
-//     //},
-//     //measure_pm25: {
-//     //    payload: {
-//     //        device_class: 'gas' // invalid
-//     //    }
-//     //},
-//     measure_humidity: {
-//         payload: {
-//             device_class: 'humidity'
-//         }
-//     },
-//     measure_pressure: {
-//         payload: {
-//             device_class: 'pressure'
-//         }
-//     },
-//     //measure_noise: {
-//     //    payload: {
-//     //        device_class: 'noise' // invalid
-//     //    }
-//     //},
-//     //measure_rain: {
-//     //    payload: {
-//     //        device_class: 'rain' // invalid
-//     //    }
-//     //},
-//     //measure_wind_strength: {
-//     //    payload: {
-//     //        device_class: 'wind' // invalid
-//     //    }
-//     //},
-//     //measure_wind_angle: {
-//     //    payload: {
-//     //        device_class: 'wind' // invalid
-//     //    }
-//     //},
-//     //measure_gust_strength: {
-//     //    payload: {
-//     //        device_class: 'gust' // invalid
-//     //    }
-//     //},
-//     //measure_gust_angle: {
-//     //    payload: {
-//     //        device_class: 'gust' // invalid
-//     //    }
-//     //},
-//     measure_battery: {
-//         payload: {
-//             device_class: 'battery'
-//         }
-//     },
-//     measure_power: {
-//         payload: {
-//         }
-//     },
-//     measure_voltage: {
-//         payload: {
-//         }
-//     },
-//     measure_current: {
-//         payload: {
-//         }
-//     },
-//     measure_luminance: {
-//         payload: {
-//             device_class: 'luminance'
-//         }
-//     },
-//     //measure_ultraviolet: {
-//     //    payload: {
-//     //        device_class: 'ultraviolet' // invlaid
-//     //    }
-//     //},
-//     measure_water: {
-//         payload: {
-//             device_class: 'humidity'
-//         }
-//     },
-
-//     //// Cover
-//     // TODO: Implement window cover: https://www.home-assistant.io/components/cover.mqtt/
-
-//     //'sensor_cover': {
-//     //    type: 'sensor',
-//     //    payload: {
-//     //    },
-//     //},
-
-//     //'windowcoverings_state': {
-//     //    type: 'cover',
-//     //    payload: {
-//     //        optimistic: true,
-//     //    },
-//     //},
-//     //'windowcoverings_tilt_up': {
-//     //    type: 'cover',
-//     //    payload: {
-//     //        optimistic: true,
-//     //    },
-//     //},
-//     //'windowcoverings_tilt_down': {
-//     //    type: 'cover',
-//     //    payload: {
-//     //        optimistic: true,
-//     //    },
-//     //},
-//     //'windowcoverings_tilt_set': {
-//     //    type: 'cover',
-//     //    payload: {
-//     //        optimistic: true,
-//     //    },
-//     //},
-//     //'windowcoverings_closed': {
-//     //    type: 'cover',
-//     //    payload: {
-//     //        optimistic: true,
-//     //    },
-//     //},
-//     //'windowcoverings_set': {
-//     //    type: 'cover',
-//     //    payload: {
-//     //        optimistic: true,
-//     //    },
-//     //},
-
-//     //// Vacuum
-//     // TODO: implement vacuum: https://www.home-assistant.io/components/vacuum.mqtt/
-//     //'vacuumcleaner_state': {
-//     //    type: 'vacuum',
-//     //}
-// };
-
 const sensorClasses = new Set([
     'battery',
     'humidity',
@@ -601,10 +364,36 @@ class HomeAssistantDispatcher {
         const stateTopic = this.homieDispatcher.getTopic(device);
         const type = 'climate';
 
-        //const capability = device.capabilitiesObj['measure-temperature'] || device.capabilitiesObj['target-temperature'] || device.capabilitiesObj['measure-temperature'];
-        //let unit = capability
-        //    ? (capability.units && typeof capability.units === 'object' ? capability.units['en'] : capability.units)
-        //    : undefined;
+        // Read capability options for temperature. This is only needed for target_temperature - the only changeable temperature capability
+        // Use capability default values if not set in the device capabilities
+        // Details: https://www.home-assistant.io/integrations/climate.mqtt/
+        let min_temp = 5;
+        let max_temp = 30;
+        let temp_step = 0.5;
+        let unit = 'C';
+        const capability = device.capabilitiesObj['target_temperature'];
+        if (capability) {
+            if (capability.min) {
+                min_temp = capability.min;
+            }
+            if (capability.max) {
+                max_temp = capability.max;
+            }
+            if (capability.step) {
+                temp_step = capability.step;
+            }
+            if (capability.units) {
+                let capabilityUnit = capability.units['en'] || capability.units;
+                switch (capabilityUnit) {
+                    case '°C':
+                      unit = 'C';
+                      break;
+                    case '°F':
+                      unit = 'F';
+                      break;
+                }
+            }
+        }
 
         const payload = {
             name: device.name,
@@ -614,10 +403,10 @@ class HomeAssistantDispatcher {
             temperature_state_topic: `${stateTopic}/target-temperature`,
             temperature_command_topic: `${stateTopic}/target-temperature/set`,
             temperature_state_template: `{{ value }}`,
-            min_temp: 5,
-            max_temp: 30,
-            temp_step: 0.5,
-            //unit_of_measurement: unit || '°C'  // NOT Supported?
+            min_temp: min_temp,
+            max_temp: max_temp,
+            temp_step: temp_step,
+            temperature_unit : unit // NOT Supported?
         };
 
         if (capabilities.hasOwnProperty('onoff')) {
