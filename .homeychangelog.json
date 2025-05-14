@@ -91,5 +91,8 @@
   },
   "4.3.14": {
     "en": "Added climate min/max/step settings and unit for HA discovery."
+  },
+  "4.3.15": {
+    "en": "Added climate min/max/step settings and unit for HA discovery."
   }
 }

@@ -379,8 +379,13 @@ class HomeAssistantDispatcher {
             if (capability.max) {
                 max_temp = capability.max;
             }
-            if (capability.step) {
+            if (capability.step != undefined) {
                 temp_step = capability.step;
+            }
+            else{
+              if (capability.decimals) {
+                temp_step = Math.pow(10, -capability.decimals);
+              }
             }
             if (capability.units) {
                 let capabilityUnit = capability.units['en'] || capability.units;
