@@ -373,21 +373,21 @@ class HomeAssistantDispatcher {
         let unit = 'C';
         const capability = device.capabilitiesObj['target_temperature'];
         if (capability) {
-            if (capability.min) {
+            if (capability.min != undefined) {
                 min_temp = capability.min;
             }
-            if (capability.max) {
+            if (capability.max != undefined) {
                 max_temp = capability.max;
             }
             if (capability.step != undefined) {
                 temp_step = capability.step;
             }
             else{
-              if (capability.decimals) {
+              if (capability.decimals != undefined) {
                 temp_step = Math.pow(10, -capability.decimals);
               }
             }
-            if (capability.units) {
+            if (capability.units != undefined) {
                 let capabilityUnit = capability.units['en'] || capability.units;
                 switch (capabilityUnit) {
                     case '°C':
