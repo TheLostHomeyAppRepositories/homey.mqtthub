@@ -47,6 +47,8 @@ class MQTTDevice extends Homey.Device {
             settings["set_energy_home_battery"] = energy["homeBattery"] != undefined ? energy["homeBattery"] : false;
             settings["set_energy_cumulative_imported_capability"] = energy["cumulativeImportedCapability"] != undefined ? energy["cumulativeImportedCapability"] : "";
             settings["set_energy_cumulative_exported_capability"] = energy["cumulativeExportedCapability"] != undefined ? energy["cumulativeExportedCapability"] : "";
+            settings["set_energy_meter_power_imported_capability"] = energy["meterPowerImportedCapability"] != undefined ? energy["meterPowerImportedCapability"] : "";
+            settings["set_energy_meter_power_exported_capability"] = energy["meterPowerExportedCapability"] != undefined ? energy["meterPowerExportedCapability"] : "";
             await this.setSettings(settings);
         }
         catch(error){
@@ -136,6 +138,18 @@ class MQTTDevice extends Homey.Device {
                 await this._setEnergyCumulativeExportedCapability(newSettings['set_energy_cumulative_exported_capability']);
             }
         }
+        if (changedKeys.indexOf('set_energy_meter_power_imported_capability') > -1){
+            if (newSettings['set_energy_meter_power_imported_capability'] != undefined){
+                this.log("onSettings(): set_energy_meter_power_imported_capability: "+newSettings['set_energy_meter_power_imported_capability']);
+                await this._setEnergyMeterPowerImportedCapability(newSettings['set_energy_meter_power_imported_capability']);
+            }
+        }
+        if (changedKeys.indexOf('set_energy_meter_power_exported_capability') > -1){
+            if (newSettings['set_energy_meter_power_exported_capability'] != undefined){
+                this.log("onSettings(): set_energy_meter_power_exported_capability: "+newSettings['set_energy_meter_power_exported_capability']);
+                await this._setEnergyMeterPowerExportedCapability(newSettings['set_energy_meter_power_exported_capability']);
+            }
+        }
 
     }
 
@@ -174,6 +188,32 @@ class MQTTDevice extends Homey.Device {
         }
         else{
             energy["cumulativeExportedCapability"] =  value;
+        }
+        await this.setEnergy( energy );
+    }
+
+    async _setEnergyMeterPowerImportedCapability(value){
+        let energy = JSON.parse(JSON.stringify(this.getEnergy())) || {};
+        if (value == ''){
+            if (energy["meterPowerImportedCapability"]){
+                delete  energy["meterPowerImportedCapability"];
+            }
+        }
+        else{
+            energy["meterPowerImportedCapability"] =  value;
+        }
+        await this.setEnergy( energy );
+    }
+
+    async _setEnergyMeterPowerExportedCapability(value){
+        let energy = JSON.parse(JSON.stringify(this.getEnergy())) || {};
+        if (value == ''){
+            if (energy["meterPowerExportedCapability"]){
+                delete energy["meterPowerExportedCapability"];
+            }
+        }
+        else{
+            energy["meterPowerExportedCapability"] =  value;
         }
         await this.setEnergy( energy );
     }
