@@ -1,7 +1,7 @@
 {
   "id": "org.mqtt.hub",
-  "version": "4.3.16",
-  "compatibility": ">=12.2.0",
+  "version": "4.4.0",
+  "compatibility": ">=12.4.5",
   "sdk": 3,
   "brandColor": "#103b7a",
   "name": {
@@ -296,7 +296,9 @@
         {
           "type": "group",
           "label": { 
-              "en": "Device"
+              "en": "Device",
+              "de": "Gerät",
+              "nl": "Apparaat"
           },
           "children": 
           [
@@ -886,7 +888,9 @@
         {
           "type": "group",
           "label": { 
-              "en": "Energy"
+              "en": "Energy",
+              "de": "Energie",
+              "nl": "Energie"
           },
           "children": 
           [
@@ -895,10 +899,14 @@
                   "type": "checkbox",
                   "value": false,
                   "label": {
-                      "en": "Cumulative energy measuring"
+                      "en": "Cumulative energy measuring",
+                      "de": "Kumulative Energie-Messung",
+                      "nl": "Cumulatieve energie meting"
                   },
                   "hint": {
-                      "en": "Enable this setting if the device is measuring the cumulative energy usage."
+                      "en": "Enable this setting if the device is measuring the cumulative energy usage.",
+                      "de": "Aktivieren Sie diese Einstellung, wenn das Gerät den kumulierten Energieverbrauch misst.",
+                      "nl": "Schakel deze instelling in als het apparaat de cumulatieve energieverbruik meet."
                   }
               },
               {
@@ -906,9 +914,22 @@
                   "type": "checkbox",
                   "value": false,
                   "label": {
-                      "en": "Include in total energy"
+                      "en": "Include in total energy",
+                      "de": "In die Gesamtenergie einbeziehen",
+                      "nl": "In totale energie opnemen"
                   }
-              },
+              }
+          ]
+        },
+        {
+          "type": "group",
+          "label": { 
+              "en": "Electricity Meter",
+              "de": "Stromzähler",
+              "nl": "Elektriciteitsmeter"
+          },
+          "children": 
+          [
               {
                   "id": "set_energy_cumulative_imported_capability",
                   "type": "text",
@@ -934,7 +955,9 @@
         {
           "type": "group",
           "label": {
-              "en": "Home Battery"
+              "en": "Home Battery",
+              "de": "Heim-Batterie",
+              "nl": "Thuisbatterij"
           },
           "children":
           [
@@ -943,10 +966,14 @@
                   "type": "checkbox",
                   "value": false,
                   "label": {
-                      "en": "Home Battery"
+                      "en": "Home Battery",
+                      "de": "Heim-Batterie",
+                      "nl": "Thuisbatterij"
                   },
                   "hint": {
-                      "en": "Define a device with class=battery having a measure_power capability as home battery. Provide positive values to indicate the battery is consuming energy (charging), provide negative values to indicate the battery is delivering energy back to the home (discharging)"
+                      "en": "Define a device with class=battery having a measure_power capability as home battery. Provide positive values to indicate the battery is consuming energy (charging), provide negative values to indicate the battery is delivering energy back to the home (discharging)",
+                      "de": "Definiere ein Gerät mit der Klasse=battery, das über eine measure_power-Funktionalität verfügt, als Heim-Batterie. Gib positive Werte an, um anzuzeigen, dass die Batterie Energie verbraucht (aufladen), und negative Werte, um anzuzeigen, dass die Batterie Energie an das Haus zurückliefert (entladen).",
+                      "nl": "Definieer een apparaat met class=battery met een measure_power-functionaliteit als thuisbatterij. Geef positieve waarden op om aan te geven dat de batterij energie verbruikt (opladen), geef negatieve waarden op om aan te geven dat de batterij energie teruglevert aan het huis (ontladen)."
                   }
               },
               {
@@ -954,7 +981,9 @@
                   "type": "text",
                   "value": "",
                   "label": {
-                      "en": "Meter capability for energy charged by the battery"
+                      "en": "Meter capability for energy charged by the battery",
+                      "de": "Zähler-Capability für Energie, die von der Batterie geladen wird",
+                      "nl": "Meter capability voor energie die door de batterij is opgeladen"
                   }
               },
               {
@@ -962,7 +991,9 @@
                   "type": "text",
                   "value": "",
                   "label": {
-                      "en": "Meter capability for energy discharged by the battery"
+                      "en": "Meter capability for energy discharged by the battery",
+                      "de": "Zähler-Capability für Energie, die von der Batterie entladen wird",
+                      "nl": "Meter capability voor energie die door de batterij is opgeladen"
                   }
               }
           ]

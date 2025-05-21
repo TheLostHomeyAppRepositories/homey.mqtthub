@@ -97,5 +97,9 @@
   },
   "4.3.16": {
     "en": "Added climate min/max/step settings and unit for HA discovery."
+  },
+  "4.4.0": {
+    "en": "HomeyEnergy: Added device settings to define charged/discharged capabilities for home battery."
   }
+
 }
