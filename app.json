@@ -910,17 +910,6 @@
                   }
               },
               {
-                  "id": "set_energy_home_battery",
-                  "type": "checkbox",
-                  "value": false,
-                  "label": {
-                      "en": "Home Battery"
-                  },
-                  "hint": {
-                      "en": "Define a device with class=battery having a measure_power capability as home battery. Provide positive values to indicate the battery is consuming energy (charging), provide negative values to indicate the battery is delivering energy back to the home (discharging)"
-                  }
-              },
-              {
                   "id": "set_energy_cumulative_imported_capability",
                   "type": "text",
                   "value": "",
@@ -938,6 +927,42 @@
                       "en": "Meter capability for exported energy",
                       "de": "Zähler-Capability für exportierte Energie",
                       "nl": "Meter capability voor exporteerde energie"
+                  }
+              }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+              "en": "Home Battery"
+          },
+          "children":
+          [
+              {
+                  "id": "set_energy_home_battery",
+                  "type": "checkbox",
+                  "value": false,
+                  "label": {
+                      "en": "Home Battery"
+                  },
+                  "hint": {
+                      "en": "Define a device with class=battery having a measure_power capability as home battery. Provide positive values to indicate the battery is consuming energy (charging), provide negative values to indicate the battery is delivering energy back to the home (discharging)"
+                  }
+              },
+              {
+                  "id": "set_energy_meter_power_imported_capability",
+                  "type": "text",
+                  "value": "",
+                  "label": {
+                      "en": "Meter capability for energy charged by the battery"
+                  }
+              },
+              {
+                  "id": "set_energy_meter_power_exported_capability",
+                  "type": "text",
+                  "value": "",
+                  "label": {
+                      "en": "Meter capability for energy discharged by the battery"
                   }
               }
           ]
