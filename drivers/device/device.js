@@ -43,8 +43,20 @@ class MQTTDevice extends Homey.Device {
             this.setSettings({class: this.getClass()});
             let energy = this.getEnergy() || {};
             let settings = {};
+            if (energy["homeBattery"] != undefined && energy["homeBattery"] == true){
+                settings["set_energy_type"] = 'homeBattery';
+            }
+            else if (energy["evCharger"] != undefined && energy["evCharger"] == true){
+                settings["set_energy_type"] = 'evCharger';
+            }
+            else if (energy["electricCar"] != undefined && energy["electricCar"] == true){
+                settings["set_energy_type"] = 'electricCar';
+            }
+            else{
+                settings["set_energy_type"] = '';
+            }
             settings["set_energy_cumulative"] =  energy["cumulative"] != undefined ? energy["cumulative"] : false;
-            settings["set_energy_home_battery"] = energy["homeBattery"] != undefined ? energy["homeBattery"] : false;
+            // settings["set_energy_home_battery"] = energy["homeBattery"] != undefined ? energy["homeBattery"] : false;
             settings["set_energy_cumulative_imported_capability"] = energy["cumulativeImportedCapability"] != undefined ? energy["cumulativeImportedCapability"] : "";
             settings["set_energy_cumulative_exported_capability"] = energy["cumulativeExportedCapability"] != undefined ? energy["cumulativeExportedCapability"] : "";
             settings["set_energy_meter_power_imported_capability"] = energy["meterPowerImportedCapability"] != undefined ? energy["meterPowerImportedCapability"] : "";
@@ -116,16 +128,19 @@ class MQTTDevice extends Homey.Device {
                 await this._setEnergyCumulative(false);
             } 
         }
-        if (changedKeys.indexOf('set_energy_home_battery') > -1){
-            if (newSettings['set_energy_home_battery']){
-                this.log("onSettings(): set_energy_home_battery SET");
-                await this._setEnergyHomeBattery(true);
-            }
-            else{
-                this.log("onSettings(): set_energy_home_battery UNSET");
-                await this._setEnergyHomeBattery(false);
-            } 
+        if (changedKeys.indexOf('set_energy_type') > -1){
+            await this.setEnergyType(newSettings['set_energy_type']);
         }
+        // if (changedKeys.indexOf('set_energy_home_battery') > -1){
+        //     if (newSettings['set_energy_home_battery']){
+        //         this.log("onSettings(): set_energy_home_battery SET");
+        //         await this._setEnergyHomeBattery(true);
+        //     }
+        //     else{
+        //         this.log("onSettings(): set_energy_home_battery UNSET");
+        //         await this._setEnergyHomeBattery(false);
+        //     } 
+        // }
         if (changedKeys.indexOf('set_energy_cumulative_imported_capability') > -1){
             if (newSettings['set_energy_cumulative_imported_capability'] != undefined){
                 this.log("onSettings(): set_energy_cumulative_imported_capability: "+newSettings['set_energy_cumulative_imported_capability']);
@@ -160,9 +175,35 @@ class MQTTDevice extends Homey.Device {
         await this.setEnergy( energy );
     }
 
-    async _setEnergyHomeBattery(value = false){
+    // async _setEnergyHomeBattery(value = false){
+    //     let energy = JSON.parse(JSON.stringify(this.getEnergy())) || {};
+    //     energy["homeBattery"] =  value;
+    //     await this.setEnergy( energy );
+    // }
+
+    async setEnergyType(type){
         let energy = JSON.parse(JSON.stringify(this.getEnergy())) || {};
-        energy["homeBattery"] =  value;
+        switch (type){
+            case 'homeBattery':
+                energy["homeBattery"] =  true;
+                delete energy["evCharger"];
+                delete energy["electricCar"];
+                break;
+            case 'evCharger':
+                delete energy["homeBattery"];
+                energy["evCharger"] =  true;
+                delete energy["electricCar"];
+                break;
+            case 'electricCar':
+                delete energy["homeBattery"];
+                delete energy["evCharger"];
+                energy["electricCar"] =  true;
+                break;
+            default:
+                delete energy["homeBattery"];
+                delete energy["evCharger"];
+                delete energy["electricCar"];
+        }
         await this.setEnergy( energy );
     }
 

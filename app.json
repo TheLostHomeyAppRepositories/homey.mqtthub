@@ -1,6 +1,6 @@
 {
   "id": "org.mqtt.hub",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "compatibility": ">=12.4.5",
   "sdk": 3,
   "brandColor": "#103b7a",
@@ -953,50 +953,84 @@
           ]
         },
         {
-          "type": "group",
-          "label": {
-              "en": "Home Battery",
-              "de": "Heim-Batterie",
-              "nl": "Thuisbatterij"
-          },
-          "children":
-          [
-              {
-                  "id": "set_energy_home_battery",
-                  "type": "checkbox",
-                  "value": false,
-                  "label": {
-                      "en": "Home Battery",
-                      "de": "Heim-Batterie",
-                      "nl": "Thuisbatterij"
-                  },
-                  "hint": {
-                      "en": "Define a device with class=battery having a measure_power capability as home battery. Provide positive values to indicate the battery is consuming energy (charging), provide negative values to indicate the battery is delivering energy back to the home (discharging)",
-                      "de": "Definiere ein Gerät mit der Klasse=battery, das über eine measure_power-Funktionalität verfügt, als Heim-Batterie. Gib positive Werte an, um anzuzeigen, dass die Batterie Energie verbraucht (aufladen), und negative Werte, um anzuzeigen, dass die Batterie Energie an das Haus zurückliefert (entladen).",
-                      "nl": "Definieer een apparaat met class=battery met een measure_power-functionaliteit als thuisbatterij. Geef positieve waarden op om aan te geven dat de batterij energie verbruikt (opladen), geef negatieve waarden op om aan te geven dat de batterij energie teruglevert aan het huis (ontladen)."
-                  }
-              },
-              {
+            "type": "group",
+            "label": { 
+                "en": "HomeyEnergy",
+                "de": "HomeyEnergy",
+                "nl": "HomeyEnergy"
+            },
+            "children": 
+            [
+                {
+                    "id": "set_energy_type",
+                    "type": "dropdown",
+                    "value": "",
+                    "label": {
+                        "en": "HomeyEnergy device type",
+                        "de": "HomeyEnergy-Gerätetyp", 
+                        "nl": "HomeyEnergy-apparaattype"
+                    },
+                    "hint": {
+                        "en": "Choose an device type for HomeyEnergy. Fill the meter capabilities for imported and exported energy.",
+                        "de": "Wählen Sie ein Geräte-Typ für HomeyEnergy. Füllen Sie die Zähler-Capabilities für importierte und exportierte Energie.", 
+                        "nl": "Kies een apparaattype voor HomeyEnergy. Vul de meter capabilities voor importeerde en exporteerde energie."
+                    },
+                    "values": [
+                        {
+                            "id": "",
+                            "label": {
+                                "en": "No HomeyEnergy device",
+                                "de": "Kein HomeyEnergy-Gerät",
+                                "nl": "Geen HomeyEnergy-apparaat"
+                            }    
+                        },
+                        {
+                            "id": "homeBattery",
+                            "label": {
+                                "en": "Home Battery",
+                                "de": "Hausbatterie",
+                                "nl": "Huisbatterij"
+                            }    
+                        },
+                        {
+                            "id": "evCharger",
+                            "label": {
+                                "en": "EV Charger",
+                                "de": "EV-Ladegerät",
+                                "nl": "EV-lader"
+                            }    
+                        },
+                        {
+                            "id": "electricCar",
+                            "label": {
+                                "en": "Electric car",
+                                "de": "E-Auto",
+                                "nl": "Elektrische auto"
+                            }    
+                        }
+                    ]
+                },
+                {
                   "id": "set_energy_meter_power_imported_capability",
                   "type": "text",
                   "value": "",
                   "label": {
-                      "en": "Meter capability for energy charged by the battery",
-                      "de": "Zähler-Capability für Energie, die von der Batterie geladen wird",
-                      "nl": "Meter capability voor energie die door de batterij is opgeladen"
+                      "en": "Capability for imported/charged energy",
+                      "de": "Capability für importierte/geladene Energie",
+                      "nl": "Capability voor importeerde/opgeladen energie"
                   }
-              },
-              {
-                  "id": "set_energy_meter_power_exported_capability",
-                  "type": "text",
-                  "value": "",
-                  "label": {
-                      "en": "Meter capability for energy discharged by the battery",
-                      "de": "Zähler-Capability für Energie, die von der Batterie entladen wird",
-                      "nl": "Meter capability voor energie die door de batterij is opgeladen"
-                  }
-              }
-          ]
+                },
+                {
+                    "id": "set_energy_meter_power_exported_capability",
+                    "type": "text",
+                    "value": "",
+                    "label": {
+                        "en": "Capability for exported/discharged energy",
+                        "de": "Capability für exportierte/entladene Energie",
+                        "nl": "Capability voor exporteerde/opgeladen energie"
+                    }
+                }
+            ]
         }
       ]
     },
