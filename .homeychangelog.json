@@ -103,6 +103,9 @@
   },
   "4.5.0": {
     "en": "HomeyEnergy: Added/changed device settings for Homey energy (home battery, ev charger, electric car."
+  },
+  "4.5.1": {
+    "en": "Fixed device settings (default class 'others')."
   }
 
 }

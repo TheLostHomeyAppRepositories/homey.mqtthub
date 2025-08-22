@@ -1,6 +1,6 @@
 {
   "id": "org.mqtt.hub",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "compatibility": ">=12.4.5",
   "sdk": 3,
   "brandColor": "#103b7a",
@@ -435,6 +435,14 @@
                       },
                       {
                           "id": "lock",
+                          "label": {
+                              "en": "Lock",
+                              "nl": "Schluis",
+                              "de": "Schloss"
+                          }    
+                      },
+                      {
+                          "id": "other",
                           "label": {
                               "en": "Other",
                               "nl": "Overig",
