@@ -97,6 +97,7 @@ class MQTTDevice extends Homey.Device {
             try {
                 await this.unsubscribeFromTopics();
                 await this._updateCapabilities(capabilities);
+                this.registerDeviceChanges();
                 this.initTopics();
                 await this.subscribeToTopics();
                 await this.broadcast();
@@ -438,21 +439,34 @@ class MQTTDevice extends Homey.Device {
                         try {
                             const data = this._parseMessageData(message);
                             
-                            // 1) Try to parse template as JS function
-                            try{
-                                const converter = eval(template);
-                                message = converter(data);
+                            if (template.includes('=>')){
+                                // 1) Try to parse template as JS function
+                                try{
+                                    const converter = eval(template);
+                                    message = converter(data);
+                                }
+                                catch(error){
+                                    // Parse/execute error or thrown error in JS function
+                                    this.log("Failed to parse & execute JS function: ", error.message);
+                                    // do not update capability with default value
+                                    return;
+                                }
                             }
-                            // If not possible, try MathJS or JSONpath
-                            catch(error){
-                                const mathjs = this.compiled.get(template);
-                                const result = mathjs
-                                    ? mathjs.evaluate(data)  // mathJS
-                                    : jsonpath.query(data, template); // jsonPath
-                                message = Array.isArray(result) ? result[0] : result;
+                            else{
+                                try{
+                                    // If not possible, try MathJS or JSONpath
+                                    const mathjs = this.compiled.get(template);
+                                    const result = mathjs
+                                        ? mathjs.evaluate(data)  // mathJS
+                                        : jsonpath.query(data, template); // jsonPath
+                                    message = Array.isArray(result) ? result[0] : result;
+                                }
+                                catch(error){
+                                    this.log("Failed to evaluate JSON path or MathJS expression: ", error.message);
+                                }
                             }
-                        } catch(e) {
-                            this.log("failed to parse & query json message", e);
+                        } catch(error) {
+                            this.log("Failed to parse message", error.message);
                         }
                     }
                 }

@@ -106,6 +106,9 @@
   },
   "4.5.1": {
     "en": "Fixed device settings (default class 'others')."
+  },
+  "4.5.2": {
+    "en": "Fixed capability registration after settings changed. Exception in JS template skips value."
   }
 
 }
