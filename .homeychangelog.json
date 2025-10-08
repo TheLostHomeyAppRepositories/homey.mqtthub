@@ -109,6 +109,9 @@
   },
   "4.5.2": {
     "en": "Fixed capability registration after settings changed. Exception in JS template skips value."
+  },
+  "4.5.3": {
+    "en": "Undefined result of JSON path or JS function skips value."
   }
 
 }

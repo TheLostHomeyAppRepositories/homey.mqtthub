@@ -471,7 +471,12 @@ class MQTTDevice extends Homey.Device {
                     }
                 }
             }
-            
+
+            if ( message == undefined ){
+                this.log("Failed to parse message. Value is undefined.");
+                return;
+            }
+
             const value = parseValue(message, capability, this.percentageScale);
             const currentValue = await this.getCapabilityValue(capabilityId);
             if(value !== currentValue) {
