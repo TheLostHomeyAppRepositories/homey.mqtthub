@@ -180,10 +180,14 @@ module.exports =
     // alarm_cleaning_pad_missing
     alarm_co: {
         payload: {
-            device_class: 'co'
+            device_class: 'carbon_monoxide'
         }
     },
-    //     "alarm_co2
+    alarm_co2: {
+        payload: {
+            device_class: 'carbon_dioxide'
+        }
+    },
     alarm_cold: {
         payload: {
             device_class: 'cold'
@@ -318,12 +322,12 @@ module.exports =
     // level_ch2o
     level_co: {
         payload: {
-            device_class: 'co'
+            device_class: 'carbon_monoxide'
         }
     },
     level_co2: {
         payload: {
-            device_class: 'co2'
+            device_class: 'carbon_dioxide'
         }
     },
     // level_hepa_filter

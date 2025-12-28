@@ -1,6 +1,6 @@
 {
   "id": "org.mqtt.hub",
-  "version": "4.5.3",
+  "version": "4.5.4",
   "compatibility": ">=12.4.5",
   "sdk": 3,
   "brandColor": "#103b7a",
@@ -288,7 +288,7 @@
               },
               "value": "",
               "hint": {
-                "en": "WARNING: Messing up the topic config will break the device! ... Value template: Use MathJS expression, JSON path or JS function ... 1) MathJS: value * 100 ... 2) JSON path: object/subobject/field ... 3) JS function: (value) => { return value * 100 }"
+                "en": "WARNING: Messing up the topic config will break the device! ... Value template: Use MathJS expression, JSON path or JS function ... 1) MathJS: value * 100 ... 2) JSON path: object/subobject/field ... 3) JS function: (topic) => { return topic.value * 100 }"
               }
             }
           ]

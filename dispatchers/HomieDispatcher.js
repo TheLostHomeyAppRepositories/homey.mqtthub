@@ -780,6 +780,11 @@ class HomieDispatcher {
     }
 
     _formatValue(value, capability) {
+        // send "unavailable" state fot unset capability value (null)
+        if (value === null || value === undefined) {
+             return 'unavailable';
+        }
+
         if (typeof value === 'boolean') {
             return value ? 'true' : 'false';
         }
