@@ -565,7 +565,8 @@ class HomeAssistantDispatcher {
                 payload.position_topic = `${stateTopic}/${positonTopic}`;
                 payload.position_template = '{{ value }}',
                 payload.position_closed = capabilities[position].min || 0;
-                payload.position_open = capabilities[position].max || 100;
+                // payload.position_open = capabilities[position].max || 100;
+                payload.position_open = 100; // Use 100 (%) as fixed max value
                 if (capabilities[position].setable) {
                     payload.set_position_topic = `${stateTopic}/${positonTopic}/set`;
                     payload.set_position_template = '{{ value }}';
@@ -579,7 +580,8 @@ class HomeAssistantDispatcher {
             if (capabilities['windowcoverings_tilt_set'].setable) {
                 payload.tilt_command_topic = `${stateTopic}/${tiltTopic}/set`;
                 payload.tilt_min = capabilities['windowcoverings_tilt_set'].min || 0;
-                payload.tilt_max = capabilities['windowcoverings_tilt_set'].max || 180;
+                // payload.tilt_max = capabilities['windowcoverings_tilt_set'].max || 180;
+                payload.tilt_max = 180; // Use 100 (%) as fixed max value
                 //payload.tilt_closed_value = 70
                 //payload.tilt_opened_value = 180
             }
